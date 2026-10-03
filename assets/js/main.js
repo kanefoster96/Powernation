@@ -189,7 +189,10 @@
       ph.innerHTML = `<b>${src.replace(/^images\//, "")}</b>${m.dataset.note ? `<span>${m.dataset.note}</span>` : ""}${m.dataset.size ? `<i>${m.dataset.size}</i>` : ""}`;
       m.appendChild(ph);
       const vid = $("video", m);
-      if (vid) {
+      // Skip background video for reduced-motion users and data-saver connections
+      const lite = matchMedia("(prefers-reduced-motion: reduce)").matches || (navigator.connection && navigator.connection.saveData);
+      if (vid && lite) vid.remove();
+      else if (vid) {
         const s = $("source", vid);
         const kill = () => vid.remove();
         if (s) s.addEventListener("error", kill);
@@ -456,6 +459,25 @@
     const limit = +(el.dataset.limit || 12);
     el.innerHTML = list.slice(0, limit).map((p) => cardHTML(p)).join("");
   });
+
+  /* ---------- sticky mobile action bars ---------- */
+  // <div class="mbar" data-mbar data-show-after=".hero" data-hide-on="#quote">
+  function initMbar(bar) {
+    if (!bar || bar.dataset.ready || !("IntersectionObserver" in window)) return;
+    bar.dataset.ready = "1";
+    const after = $(bar.dataset.showAfter);
+    const hide = bar.dataset.hideOn ? $(bar.dataset.hideOn) : null;
+    let past = false, inHide = false;
+    const update = () => {
+      const on = past && !inHide;
+      bar.classList.toggle("is-on", on);
+      document.body.classList.toggle("has-mbar", on);
+    };
+    if (after) new IntersectionObserver(([e]) => { past = !e.isIntersecting && e.boundingClientRect.top < 0; update(); }).observe(after);
+    if (hide) new IntersectionObserver(([e]) => { inHide = e.isIntersecting; update(); }).observe(hide);
+  }
+  window.PN_initMbar = initMbar;
+  $$("[data-mbar]").forEach(initMbar);
 
   hydrateMedia();
   renderBag();

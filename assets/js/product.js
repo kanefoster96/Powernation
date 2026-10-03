@@ -61,6 +61,21 @@
           </div>
         </div>`;
       window.PN_hydrateMedia(root);
+      let bar = document.getElementById("pdp-mbar");
+      if (!bar) {
+        bar = document.createElement("div");
+        bar.className = "mbar"; bar.id = "pdp-mbar";
+        document.body.appendChild(bar);
+        const check = () => {
+          const add = root.querySelector(".pdp__add");
+          const on = !!add && add.getBoundingClientRect().bottom < 0;
+          bar.classList.toggle("is-on", on);
+          document.body.classList.toggle("has-mbar", on);
+        };
+        window.addEventListener("scroll", check, { passive: true });
+        window.addEventListener("resize", check);
+      }
+      bar.innerHTML = `<div class="mbar__text"><b>${p.name}</b><span>${money(price)} · ${C[colour].name}${size ? " · " + size : ""}</span></div><button class="btn btn--pink" type="button" data-mbar-add>${size ? "Add to bag" : "Choose size"}</button>`;
       const nameInput = document.getElementById("pdp-name");
       if (nameInput) nameInput.value = root.dataset.name || "";
     };
@@ -75,6 +90,11 @@
         window.PN_addToBag({ id: p.id, colour, size, qty, price: p.price + (personal ? PERSONAL_PRICE : 0), personal: name });
       }
     };
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest("[data-mbar-add]")) return;
+      if (!size) { root.querySelector(".size-opts").scrollIntoView({ behavior: "smooth", block: "center" }); window.PN_toast("Pick a size first"); return; }
+      root.querySelector("[data-padd]").click();
+    });
     root.onchange = (e) => { if (e.target.id === "pdp-personal") { personal = e.target.checked; draw(); } };
     root.oninput = (e) => { if (e.target.id === "pdp-name") root.dataset.name = e.target.value; };
     draw();
