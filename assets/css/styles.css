@@ -881,3 +881,29 @@ button.swatch { padding: 0; cursor: pointer; width: 26px; height: 26px; border-r
 button.swatch[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink), 0 0 0 3px var(--chalk); }
 @media (max-width: 759px) { button.swatch { width: 30px; height: 30px; } }
 @media (max-width: 999px) { .pdp__gallery { scroll-padding-inline: var(--gutter); } }
+
+/* ---------- hero legibility: deeper bottom fade under the text ---------- */
+.hero--split .hero__content :is(h1, .lede, .label, .hero__trust) { text-shadow: 0 2px 16px rgba(0, 0, 0, 0.6); }
+.hero--split .hero__content .ab-text { text-shadow: none; filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.55)); }
+@media (min-width: 960px) {
+  .hero--split > .media::after {
+    background:
+      linear-gradient(90deg, var(--photo-bg) 0%, rgba(7, 7, 8, 0.6) 14%, rgba(7, 7, 8, 0) 38%),
+      linear-gradient(0deg, var(--ink) 0%, rgba(11, 10, 14, 0.7) 14%, rgba(11, 10, 14, 0) 34%),
+      linear-gradient(180deg, rgba(7, 7, 8, 0.4) 0%, rgba(7, 7, 8, 0) 14%);
+  }
+}
+@media (max-width: 959px) {
+  .hero--split > .media::after {
+    background:
+      linear-gradient(0deg,
+        var(--ink) 0%,
+        rgba(11, 10, 14, 0.96) 12%,
+        rgba(11, 10, 14, 0.82) 22%,
+        rgba(11, 10, 14, 0.5) 34%,
+        rgba(11, 10, 14, 0.18) 46%,
+        rgba(11, 10, 14, 0) 58%),
+      linear-gradient(180deg, rgba(7, 7, 8, 0.5) 0%, rgba(7, 7, 8, 0) 14%);
+  }
+}
+@media (max-width: 959px) { .hero--split { background: var(--ink); } }
