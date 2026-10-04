@@ -1,6 +1,6 @@
 /* Power Nation — store data.
    PRICES ARE PLACEHOLDERS: replace with real prices before going live.
-   Images: drop files at images/products/<id>.jpg (main), <id>-2.jpg and <id>-3.jpg.
+   Images: drop files at images/products/<id>.jpg (main). For extra views add <id>-2.jpg and <id>-3.jpg and set extraViews: true.
    For a photo per colour, add images: { colourKey: "images/products/file.jpg" } (and optional colourNames). */
 
 window.PN_COLOURS = {
