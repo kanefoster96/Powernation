@@ -50,8 +50,24 @@
   /* ---------- logo ---------- */
   if (window.PN_LOGO_SPRITE && !document.getElementById("pn-badge")) {
     document.body.insertAdjacentHTML("afterbegin", window.PN_LOGO_SPRITE);
-    if (matchMedia("(prefers-reduced-motion: reduce)").matches) $$(".pn-shine-anim").forEach((a) => a.remove());
   }
+  // Logo shine: a slow 3.6s sweep every 10s. The gradient moves exactly one repeat, so it ends where it started.
+  (function shine() {
+    const g = document.getElementById("pn-shine");
+    if (!g || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const CYCLE = 10000, SWEEP = 3600, DELAY = 2000;
+    const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+    let start = null, last = "";
+    const tick = (now) => {
+      if (start === null) start = now;
+      const t = now - start - DELAY;
+      const k = t < 0 ? 0 : (t % CYCLE) < SWEEP ? ease((t % CYCLE) / SWEEP) : 0;
+      const v = `translate(${(0.16 * k).toFixed(4)} ${k.toFixed(4)})`;
+      if (v !== last) { g.setAttribute("gradientTransform", v); last = v; }
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  })();
   // decorative=true when the surrounding link already names the brand
   const badge = (cls = "", decorative = true) => window.PN_LOGO_SPRITE
     ? `<svg class="logo__badge ${cls}" viewBox="${window.PN_LOGO_VIEWBOX}" preserveAspectRatio="xMidYMid meet" ${decorative ? 'aria-hidden="true" focusable="false"' : 'role="img" aria-label="Power Nation"'}><use href="#pn-badge" xlink:href="#pn-badge"/></svg>`
