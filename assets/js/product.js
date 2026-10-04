@@ -40,7 +40,7 @@
           <p class="lede" style="font-size:1rem">${p.desc}</p>
           <div><div class="opt-label">Colour <b>${window.PN_cname(p, colour)}</b></div>
             <div class="colour-opts">${p.colours.map((c) => `<button type="button" style="--c:${C[c].hex}" aria-label="${window.PN_cname(p, c)}" aria-pressed="${c === colour}" data-pc="${c}"></button>`).join("")}</div></div>
-          <div><div class="opt-label">Size <a href="uniforms.html#sizing" style="color:inherit">Size guide</a></div>
+          <div><div class="opt-label">Size <a href="size-guide.html" style="color:inherit">Size guide</a></div>
             <div class="size-opts">${p.sizes.map((s) => `<button type="button" aria-pressed="${s === size}" data-ps="${s}">${s}</button>`).join("")}</div></div>
           ${canPersonal ? `<div class="pdp__personal">
             <label><input type="checkbox" id="pdp-personal" ${personal ? "checked" : ""}> Add a name (+${money(PERSONAL_PRICE)})</label>
@@ -57,7 +57,7 @@
           <div class="team-box">
             <strong>Ordering for your team?</strong>
             <p>We can make this in your team colours with your logo. Order 10 or more for team prices.</p>
-            <a class="link-u" style="justify-self:start" href="uniforms.html#quote">Get team pricing</a>
+            <a class="link-u" style="justify-self:start" href="design.html">Get team pricing</a>
           </div>
           <div class="acc">
             <details open><summary>Details</summary><div class="acc__body"><ul style="margin:0;padding-left:18px">${p.details.map((d) => `<li>${d}</li>`).join("")}</ul></div></details>
