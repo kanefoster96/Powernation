@@ -967,3 +967,14 @@ input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: poin
   .band > .media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--ink) 0%, rgba(11, 10, 14, 0) 30%); }
   .band__content { justify-items: start; text-align: left; padding-block: 8px 48px; margin-top: -28px; position: relative; }
 }
+
+/* ---------- proof strip: clear divider between every card ---------- */
+.proof__list li, .proof__list li:nth-child(2n), .proof__list li:nth-child(odd), .proof__list li:last-child { border-right: 0; border-bottom: 0; }
+.proof__list li + li { border-left: 1px solid rgba(246, 244, 248, 0.2); }
+@media (min-width: 900px) { .proof__list li + li { padding-left: 24px; } }
+@media (max-width: 899px) {
+  .proof__list { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .proof__list li, .proof__list li:nth-child(odd), .proof__list li:last-child { flex: 0 0 46%; scroll-snap-align: start; padding: 18px 16px; grid-column: auto; }
+  .proof__list li:first-child { padding-left: 0; }
+}
+.proof__list strong { white-space: nowrap; font-size: clamp(1.6rem, 2.4vw, 2.2rem); }
