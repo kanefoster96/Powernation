@@ -26,8 +26,8 @@
           ${p.images
             ? [colour].concat(p.colours.filter((c) => c !== colour && p.images[c])).map((c) => `<div class="media" style="--tint:${tint}"><img src="${p.images[c]}" alt="${p.name} in ${window.PN_cname(p, c)}"></div>`).join("")
             : `<div class="media" style="--tint:${tint}" data-note="${p.name}, front view on model, grey studio" data-size="1600×2000"><img src="images/products/${p.id}.jpg" alt="${p.name} in ${C[colour].name}"></div>
-          <div class="media" style="--tint:${tint}" data-note="Second angle or back view" data-size="1600×2000"><img src="images/products/${p.id}-2.jpg" alt="${p.name}, alternate view" loading="lazy"></div>
-          <div class="media" style="--tint:${tint}" data-note="Detail close-up: fabric, stones or logo" data-size="1600×2000"><img src="images/products/${p.id}-3.jpg" alt="${p.name}, detail" loading="lazy"></div>`}
+          ${p.extraViews ? `<div class="media" style="--tint:${tint}" data-note="Second angle or back view" data-size="1600×2000"><img src="images/products/${p.id}-2.jpg" alt="${p.name}, alternate view" loading="lazy"></div>
+          <div class="media" style="--tint:${tint}" data-note="Detail close-up: fabric, stones or logo" data-size="1600×2000"><img src="images/products/${p.id}-3.jpg" alt="${p.name}, detail" loading="lazy"></div>` : ""}`}
         </div>
         <div class="pdp__info">
           <div class="stack" style="gap:10px">

@@ -176,6 +176,7 @@
   if (f) f.outerHTML = footerHTML();
 
   /* ---------- image slots ---------- */
+  if (/[?&]slots\b/.test(location.search)) document.documentElement.classList.add("show-slots");
   // <div class="media" data-note="what to shoot" data-size="2400×1350"><img src="images/…" alt="…"></div>
   function hydrateMedia(root = document) {
     $$(".media", root).forEach((m) => {
@@ -186,7 +187,8 @@
       const ph = document.createElement("div");
       ph.className = "media__ph";
       ph.setAttribute("aria-hidden", "true");
-      ph.innerHTML = `<b>${src.replace(/^images\//, "")}</b>${m.dataset.note ? `<span>${m.dataset.note}</span>` : ""}${m.dataset.size ? `<i>${m.dataset.size}</i>` : ""}`;
+      // Missing photos show a branded "coming soon" image. Add ?slots to the URL to see which file goes where.
+      ph.innerHTML = `<em class="media__soon">Image coming soon</em><b>${src.replace(/^images\//, "")}</b>${m.dataset.note ? `<span>${m.dataset.note}</span>` : ""}${m.dataset.size ? `<i>${m.dataset.size}</i>` : ""}`;
       m.appendChild(ph);
       const vid = $("video", m);
       // Skip background video for reduced-motion users and data-saver connections
