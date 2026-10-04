@@ -1113,3 +1113,6 @@ input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: poin
 }
 /* keyboard users get the same glow */
 .btn:focus-visible, .card__fab:focus-visible, .rail-btn:focus-visible, .socials a:focus-visible, .link-card:focus-visible { box-shadow: var(--glow-btn); }
+
+/* segmented toggle hugs its buttons instead of stretching to the heading width */
+.seg { justify-self: start; width: max-content; max-width: 100%; }
