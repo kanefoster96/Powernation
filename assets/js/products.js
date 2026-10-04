@@ -109,7 +109,8 @@ window.PN_PRODUCTS = [
     desc: "Cushioned crew socks that won't slip down inside your cheer shoes.",
     details: ["Cushioned sole", "Arch support band", "Pack of 3"] },
 
-  { id: "nfinity-vengeance", name: "Nfinity Vengeance", sub: "Competition cheer shoe", cat: "shoes", price: 105, tags: ["best"], colours: ["white", "black"], sizes: SHOE,
+  { id: "nfinity-vengeance", name: "Nfinity Vengeance", sub: "Competition cheer shoe", cat: "shoes", price: 105, tags: ["best"], colours: ["black", "white"], sizes: SHOE,
+    images: { black: "images/products/nfinity-vengeance-black.jpg" },
     desc: "The lightweight competition shoe built for stunting and tumbling, from Nfinity. Power Nation is an official Nfinity distributor.",
     details: ["Official Nfinity product", "Finger grips for stunting", "Lightweight sole"] },
   { id: "nfinity-flyte", name: "Nfinity Flyte", sub: "Lightweight cheer shoe", cat: "shoes", price: 95, tags: [], colours: ["white", "black"], sizes: SHOE,
