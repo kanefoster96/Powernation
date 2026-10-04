@@ -1116,3 +1116,4 @@ input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: poin
 
 /* segmented toggle hugs its buttons instead of stretching to the heading width */
 .seg { justify-self: start; width: max-content; max-width: 100%; }
+.floors-strip h2 { max-width: 16ch; }

@@ -13,7 +13,7 @@
     socials: {
       instagram: "https://www.instagram.com/powernationcheer/",
       facebook: "https://www.facebook.com/Powernationcheerltd/",
-      tiktok: "https://www.tiktok.com/@powernationcheer", // PLACEHOLDER: confirm handle
+      tiktok: "", // add the TikTok link to show the icon
       youtube: "" // add a link to show the icon
     }
   };
@@ -463,7 +463,7 @@
       renderBag();
       return;
     }
-    if (t.closest("[data-checkout]")) { toast("Checkout connects to your store platform at launch"); return; }
+    if (t.closest("[data-checkout]")) { toast("Online checkout opens soon. To order now, call 01788 227 195."); return; }
     const rb = t.closest("[data-rail-btn]");
     if (rb) {
       const rail = $("#" + rb.dataset.railBtn);
