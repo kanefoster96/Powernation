@@ -949,3 +949,21 @@ input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: poin
   .proof__list { scroll-padding-inline: var(--gutter); }
   .shoe-feature .btn-row .btn { flex: 1 1 100%; }
 }
+
+/* ---------- real photos: tiers, band ---------- */
+.tier .media { aspect-ratio: 4 / 3; }
+.tier .media img { object-position: center 20%; }
+.band > .media img { object-position: center 18%; }
+.gallery .media img { object-position: center 20%; }
+.band h2 { font-size: clamp(2.2rem, 4.6vw, 3.8rem); max-width: 13ch; }
+.band::after { background: linear-gradient(180deg, transparent 42%, rgba(11, 10, 14, 0.75) 72%, rgba(11, 10, 14, 0.96) 100%); }
+.band__content p { font-size: 1rem; }
+@media (min-width: 960px) { .band { min-height: min(84svh, 820px); } }
+/* band on phones: photo on top, copy underneath so the uniforms stay visible */
+@media (max-width: 759px) {
+  .band { display: block; min-height: 0; }
+  .band::after { display: none; }
+  .band > .media { position: relative; inset: auto; aspect-ratio: 5 / 4; z-index: 0; }
+  .band > .media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--ink) 0%, rgba(11, 10, 14, 0) 30%); }
+  .band__content { justify-items: start; text-align: left; padding-block: 8px 48px; margin-top: -28px; position: relative; }
+}
