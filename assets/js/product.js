@@ -54,7 +54,7 @@
           </ul>
           <div class="team-box">
             <strong>Ordering for your team?</strong>
-            <p>Get this in your team colours with your logo. Team pricing on 10+ and no minimum order.</p>
+            <p>We can make this in your team colours with your logo. Order 10 or more for team prices.</p>
             <a class="link-u" style="justify-self:start" href="uniforms.html#quote">Get team pricing</a>
           </div>
           <div class="acc">

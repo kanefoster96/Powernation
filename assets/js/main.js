@@ -62,8 +62,8 @@
     return `
     <a class="skip" href="#main">Skip to content</a>
     <div class="announce" role="region" aria-label="Offers"><div class="announce__track">
-      <span>No minimum order on uniforms</span><span>Free design + free sample before you pay</span><span>Lead times from 5 weeks</span>
-      <span aria-hidden="true">No minimum order on uniforms</span><span aria-hidden="true">Free design + free sample before you pay</span><span aria-hidden="true">Lead times from 5 weeks</span>
+      <span>No minimum orders</span><span>Free design and sample before you pay</span><span>Uniforms in as little as 5 weeks</span>
+      <span aria-hidden="true">No minimum orders</span><span aria-hidden="true">Free design and sample before you pay</span><span aria-hidden="true">Uniforms in as little as 5 weeks</span>
     </div></div>
     <header class="header">
       <div class="wrap header__inner">
@@ -128,7 +128,7 @@
         <div class="footer__cta">
           <h2>Your colours.<br><span class="ab-text">Your stage.</span></h2>
           <form class="newsletter" data-newsletter>
-            <label class="label" for="nl-email">Drop alerts, new bows and comp-season deals</label>
+            <label class="label" for="nl-email">Get new bows and offers by email</label>
             <div class="newsletter__row">
               <input id="nl-email" type="email" required placeholder="Email address" autocomplete="email">
               <button class="btn btn--pink" type="submit">Join</button>
@@ -329,7 +329,7 @@
         <div class="bag-item__price">${money(b.qty * b.price)}</div>
       </li>`;
     }).join("")}</ul>
-    <div class="bag-upsell"><span class="label label--pink">Ordering for a whole team?</span><p>Team orders of 10+ get team pricing and free name personalisation.</p><a class="link-u" href="uniforms.html#quote">Get team pricing</a></div>`;
+    <div class="bag-upsell"><span class="label label--pink">Ordering for a whole team?</span><p>Order 10 or more and get team prices, plus names added for free.</p><a class="link-u" href="uniforms.html#quote">Get team pricing</a></div>`;
     foot.innerHTML = `<div class="bag-total"><span>Subtotal</span><span>${money(total)}</span></div>
       <button class="btn btn--pink btn--block" type="button" data-checkout>Checkout</button>
       <span class="form__note">Taxes included. Delivery calculated at checkout.</span>`;
@@ -457,10 +457,10 @@
     const days = Math.round((deadline - today) / 86400000);
     const fmt = (d) => d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "long", year: "numeric" });
     if (days > 0) {
-      out.innerHTML = `<b>Send your brief by ${fmt(deadline)}</b><span>That's ${days} day${days === 1 ? "" : "s"} from today. Brief early to get the most design time.</span><a class="link-u" href="uniforms.html#quote">Get my free design</a>`;
+      out.innerHTML = `<b>Get in touch by ${fmt(deadline)}</b><span>That's ${days} day${days === 1 ? "" : "s"} from today. The sooner the better.</span><a class="link-u" href="uniforms.html#quote">Get my free design</a>`;
       out.dataset.state = days < 14 ? "soon" : "ok";
     } else {
-      out.innerHTML = `<b>That's tight, but call us</b><span>Standard timelines need ${DESIGN_WEEKS + PRODUCTION_WEEKS} weeks. Sublimated uniforms can sometimes be rushed. Call ${SITE.phone} today.</span><a class="link-u" href="uniforms.html#quote">Send my brief now</a>`;
+      out.innerHTML = `<b>That's tight, but call us</b><span>We usually need ${DESIGN_WEEKS + PRODUCTION_WEEKS} weeks, but printed uniforms can sometimes be done faster. Call us today on ${SITE.phone}.</span><a class="link-u" href="uniforms.html#quote">Send my brief now</a>`;
       out.dataset.state = "late";
     }
     const q = document.getElementById("q-date");
