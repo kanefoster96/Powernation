@@ -40,3 +40,8 @@ Plain HTML, CSS and JavaScript. There's no build step, so open `index.html` or h
 - **`robots.txt` + `sitemap.xml`** list the public pages. The product page is `noindex` until products get their own URLs.
 - **Preview domain is hidden from Google:** `vercel.json` sends `noindex` on any `*.vercel.app` address, so the preview (with placeholder prices) never competes with the live powernationcheer.com. It's indexed normally once the real domain points here.
 - **When the real domain goes live:** replace `https://powernation-zeta.vercel.app` with the real domain in the page heads, `robots.txt` and `sitemap.xml` (one find-and-replace), then submit the sitemap in Google Search Console.
+
+## Hosting costs and caching
+
+- `vercel.json` caches `/assets/*` for a year (files are versioned with `?v=` in the HTML, so a deploy still updates instantly) and `/images/*` for a week. Refreshes and page-to-page browsing reuse cached files instead of re-requesting them, which keeps CDN request counts low.
+- **When you change CSS/JS:** bump the `?v=` number in the HTML (one find-and-replace). **When you replace an image:** use a new file name, or visitors may see the old one for up to a week.
