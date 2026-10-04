@@ -877,3 +877,7 @@ a, button, summary, input, select, label { touch-action: manipulation; }
   }
   .hero--split .hero__content { margin-top: -84px; }
 }
+button.swatch { padding: 0; cursor: pointer; width: 26px; height: 26px; border-radius: 6px; }
+button.swatch[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ink), 0 0 0 3px var(--chalk); }
+@media (max-width: 759px) { button.swatch { width: 30px; height: 30px; } }
+@media (max-width: 999px) { .pdp__gallery { scroll-padding-inline: var(--gutter); } }

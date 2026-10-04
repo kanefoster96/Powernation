@@ -23,9 +23,11 @@
       const canPersonal = ["practice", "warmups", "bags", "accessories"].includes(p.cat);
       root.innerHTML = `
         <div class="pdp__gallery">
-          <div class="media" style="--tint:${tint}" data-note="${p.name}, front view on model, grey studio" data-size="1600×2000"><img src="images/products/${p.id}.jpg" alt="${p.name} in ${C[colour].name}"></div>
+          ${p.images
+            ? [colour].concat(p.colours.filter((c) => c !== colour && p.images[c])).map((c) => `<div class="media" style="--tint:${tint}"><img src="${p.images[c]}" alt="${p.name} in ${window.PN_cname(p, c)}"></div>`).join("")
+            : `<div class="media" style="--tint:${tint}" data-note="${p.name}, front view on model, grey studio" data-size="1600×2000"><img src="images/products/${p.id}.jpg" alt="${p.name} in ${C[colour].name}"></div>
           <div class="media" style="--tint:${tint}" data-note="Second angle or back view" data-size="1600×2000"><img src="images/products/${p.id}-2.jpg" alt="${p.name}, alternate view" loading="lazy"></div>
-          <div class="media" style="--tint:${tint}" data-note="Detail close-up: fabric, stones or logo" data-size="1600×2000"><img src="images/products/${p.id}-3.jpg" alt="${p.name}, detail" loading="lazy"></div>
+          <div class="media" style="--tint:${tint}" data-note="Detail close-up: fabric, stones or logo" data-size="1600×2000"><img src="images/products/${p.id}-3.jpg" alt="${p.name}, detail" loading="lazy"></div>`}
         </div>
         <div class="pdp__info">
           <div class="stack" style="gap:10px">
@@ -34,8 +36,8 @@
             <div class="pdp__price">${money(price)}</div>
           </div>
           <p class="lede" style="font-size:1rem">${p.desc}</p>
-          <div><div class="opt-label">Colour <b>${C[colour].name}</b></div>
-            <div class="colour-opts">${p.colours.map((c) => `<button type="button" style="--c:${C[c].hex}" aria-label="${C[c].name}" aria-pressed="${c === colour}" data-pc="${c}"></button>`).join("")}</div></div>
+          <div><div class="opt-label">Colour <b>${window.PN_cname(p, colour)}</b></div>
+            <div class="colour-opts">${p.colours.map((c) => `<button type="button" style="--c:${C[c].hex}" aria-label="${window.PN_cname(p, c)}" aria-pressed="${c === colour}" data-pc="${c}"></button>`).join("")}</div></div>
           <div><div class="opt-label">Size <a href="uniforms.html#sizing" style="color:inherit">Size guide</a></div>
             <div class="size-opts">${p.sizes.map((s) => `<button type="button" aria-pressed="${s === size}" data-ps="${s}">${s}</button>`).join("")}</div></div>
           ${canPersonal ? `<div class="pdp__personal">
@@ -75,7 +77,7 @@
         window.addEventListener("scroll", check, { passive: true });
         window.addEventListener("resize", check);
       }
-      bar.innerHTML = `<div class="mbar__text"><b>${p.name}</b><span>${money(price)} · ${C[colour].name}${size ? " · " + size : ""}</span></div><button class="btn btn--pink" type="button" data-mbar-add>${size ? "Add to bag" : "Choose size"}</button>`;
+      bar.innerHTML = `<div class="mbar__text"><b>${p.name}</b><span>${money(price)} · ${window.PN_cname(p, colour)}${size ? " · " + size : ""}</span></div><button class="btn btn--pink" type="button" data-mbar-add>${size ? "Add to bag" : "Choose size"}</button>`;
       const nameInput = document.getElementById("pdp-name");
       if (nameInput) nameInput.value = root.dataset.name || "";
     };

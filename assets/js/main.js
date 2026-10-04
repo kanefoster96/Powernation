@@ -207,9 +207,17 @@
   window.PN_hydrateMedia = hydrateMedia;
 
   /* ---------- product cards ---------- */
+  // Per-colour photos: products can set images: { colourKey: "path.jpg" } and colourNames: { colourKey: "Label" }
+  const imgFor = (p, c, n) => (!n && p && p.images && p.images[c]) ? p.images[c] : `images/products/${p.id}${n ? "-" + n : ""}.jpg`;
+  const cname = (p, c) => (p && p.colourNames && p.colourNames[c]) || ((window.PN_COLOURS || {})[c] || {}).name || c;
+  window.PN_img = imgFor;
+  window.PN_cname = cname;
+
   function swatchesHTML(p, max = 6) {
     const C = window.PN_COLOURS || {};
-    const shown = p.colours.slice(0, max).map((c) => `<span class="swatch" style="--c:${C[c].hex}" title="${C[c].name}"></span>`).join("");
+    const shown = p.colours.slice(0, max).map((c, i) => p.images
+      ? `<button type="button" class="swatch" style="--c:${C[c].hex}" aria-label="Show ${cname(p, c)}" aria-pressed="${i === 0}" data-swatch="${p.id}|${c}"></button>`
+      : `<span class="swatch" style="--c:${C[c].hex}" title="${cname(p, c)}"></span>`).join("");
     const more = p.colours.length > max ? `<span class="swatch swatch--more">+${p.colours.length - max}</span>` : "";
     return `<div class="swatches" aria-label="${p.colours.length} colours">${shown}${more}</div>`;
   }
@@ -220,8 +228,8 @@
     const badge = p.tags.includes("new") ? '<span class="card__badge">New</span>' : p.tags.includes("best") ? '<span class="card__badge card__badge--pink">Best seller</span>' : p.tags.includes("team") ? '<span class="card__badge">Team order</span>' : "";
     const fav = getFavs().includes(p.id);
     return `<div class="card">
-      <div class="media" style="--tint:${tint}" data-note="${p.name} in ${C[c].name}. Clean studio shot on grey, 4:5" data-size="1200×1500">
-        <img src="images/products/${p.id}.jpg" alt="${p.name} in ${C[c].name}" loading="lazy">
+      <div class="media" style="--tint:${tint}" data-note="${p.name} in ${cname(p, c)}. Clean studio shot on grey, 4:5" data-size="1200×1500">
+        <img src="${imgFor(p, c)}" alt="${p.name} in ${cname(p, c)}" loading="lazy">
         <a class="card__hit" href="product.html#${p.id}" tabindex="-1" aria-hidden="true"></a>
         ${badge}
         <button class="card__fab card__fab--fav" type="button" aria-label="Save ${p.name}" aria-pressed="${fav}" data-fav="${p.id}">${I.heart}</button>
@@ -313,9 +321,9 @@
       const p = P.find((x) => x.id === b.id) || {};
       const tint = C[b.colour] && C[b.colour].hex.startsWith("#") ? C[b.colour].hex : "#b9a6ff";
       return `<li class="bag-item">
-        <div class="media media--hide-ph" style="--tint:${tint}"><img src="images/products/${b.id}.jpg" alt=""></div>
+        <div class="media media--hide-ph" style="--tint:${tint}"><img src="${imgFor(p.id ? p : { id: b.id }, b.colour)}" alt=""></div>
         <div><div class="bag-item__name">${p.name || b.id}</div>
-          <div class="bag-item__meta">${C[b.colour] ? C[b.colour].name : ""} · ${b.size}${b.personal ? ` · “${b.personal}”` : ""}</div>
+          <div class="bag-item__meta">${C[b.colour] ? cname(p, b.colour) : ""} · ${b.size}${b.personal ? ` · “${b.personal}”` : ""}</div>
           <div class="qty"><button type="button" aria-label="Decrease quantity" data-qty="${i}" data-d="-1">−</button><span>${b.qty}</span><button type="button" aria-label="Increase quantity" data-qty="${i}" data-d="1">+</button></div>
         </div>
         <div class="bag-item__price">${money(b.qty * b.price)}</div>
@@ -341,10 +349,10 @@
     const draw = () => {
       body.innerHTML = `<div class="stack" style="gap:22px">
         <div style="display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center">
-          <div class="media media--hide-ph" style="--tint:${C[colour].hex.startsWith("#") ? C[colour].hex : "#b9a6ff"};aspect-ratio:4/5;border-radius:10px"><img src="images/products/${p.id}.jpg" alt=""></div>
+          <div class="media media--hide-ph" style="--tint:${C[colour].hex.startsWith("#") ? C[colour].hex : "#b9a6ff"};aspect-ratio:4/5;border-radius:10px"><img src="${imgFor(p, colour)}" alt=""></div>
           <div><div class="card__name">${p.name}</div><div class="card__sub">${p.sub}</div><div class="card__price" style="margin-top:6px">${money(p.price)}</div></div>
         </div>
-        <div><div class="opt-label">Colour <b>${C[colour].name}</b></div><div class="colour-opts">${p.colours.map((c) => `<button type="button" style="--c:${C[c].hex}" aria-label="${C[c].name}" aria-pressed="${c === colour}" data-qc="${c}"></button>`).join("")}</div></div>
+        <div><div class="opt-label">Colour <b>${cname(p, colour)}</b></div><div class="colour-opts">${p.colours.map((c) => `<button type="button" style="--c:${C[c].hex}" aria-label="${cname(p, c)}" aria-pressed="${c === colour}" data-qc="${c}"></button>`).join("")}</div></div>
         <div><div class="opt-label">Size <a href="uniforms.html#sizing" style="color:inherit">Size guide</a></div><div class="size-opts">${p.sizes.map((s) => `<button type="button" aria-pressed="${s === size}" data-qs="${s}">${s}</button>`).join("")}</div></div>
       </div>`;
       foot.innerHTML = `<button class="btn btn--pink btn--block" type="button" data-qadd ${size ? "" : "disabled style=\"opacity:.5\""}>${size ? "Add to bag · " + money(p.price) : "Select a size"}</button>
@@ -370,6 +378,17 @@
     if (open) { e.preventDefault(); if (open.dataset.open === "bag") renderBag(); openDrawer(open.dataset.open); return; }
     if (t.closest("[data-close]") || t.closest("[data-scrim]")) { closeDrawers(); return; }
     if (t.closest(".drawer a[href]")) { closeDrawers(true); }
+    const sw = t.closest("[data-swatch]");
+    if (sw) {
+      e.preventDefault();
+      const [pid, c] = sw.dataset.swatch.split("|");
+      const prod = (window.PN_PRODUCTS || []).find((x) => x.id === pid);
+      const card = sw.closest(".card");
+      const img = card && card.querySelector(".media img");
+      if (prod && img) { img.src = imgFor(prod, c); img.alt = `${prod.name} in ${cname(prod, c)}`; card.querySelector(".media").classList.remove("is-missing"); }
+      if (card) $$("[data-swatch]", card).forEach((b) => b.setAttribute("aria-pressed", b === sw));
+      return;
+    }
     const q = t.closest("[data-quick]");
     if (q) { e.preventDefault(); openQuick(q.dataset.quick); return; }
     const fv = t.closest("[data-fav]");
