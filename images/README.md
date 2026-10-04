@@ -2,6 +2,8 @@
 
 **Done:** `images/uniforms/bespoke-team.jpg` (Starlets team shot) is the home and Bespoke Uniforms hero, and is used in the home bespoke section (`bespoke-team-detail.jpg` crop) and the shop's bespoke promo. A 720px version (`bespoke-team-720.jpg`) loads on phones.
 
+**Done:** Nfinity Backpack in Classic Pink (`products/nfinity-backpack-pink.jpg`) and Black Sparkle (`products/nfinity-backpack-black.jpg`).
+
 Drop files into this `images/` folder using the exact paths below. Until a file exists, the site shows a labelled placeholder in its place, so you can see exactly where each image goes.
 
 - Use **.jpg** for photos (export at the size shown, around 80% quality) and **.png** for logos.

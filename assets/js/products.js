@@ -1,6 +1,7 @@
 /* Power Nation — store data.
    PRICES ARE PLACEHOLDERS: replace with real prices before going live.
-   Images: drop files at images/products/<id>.jpg (main) and <id>-2.jpg (second view). */
+   Images: drop files at images/products/<id>.jpg (main), <id>-2.jpg and <id>-3.jpg.
+   For a photo per colour, add images: { colourKey: "images/products/file.jpg" } (and optional colourNames). */
 
 window.PN_COLOURS = {
   black:    { name: "Black",        hex: "#141216" },
@@ -80,6 +81,11 @@ window.PN_PRODUCTS = [
     desc: "Adult hoodie for the parents in the stands. Add your athlete's name and team on the back.",
     details: ["Adult sizing", "Personalise with athlete name", "Heavyweight fleece"] },
 
+  { id: "nfinity-backpack", name: "Nfinity Backpack", sub: "Classic pink or Black Sparkle", cat: "bags", price: 55, tags: ["new", "best"], colours: ["pink", "black"], sizes: ONE,
+    colourNames: { pink: "Classic Pink", black: "Black Sparkle" },
+    images: { pink: "images/products/nfinity-backpack-pink.jpg", black: "images/products/nfinity-backpack-black.jpg" },
+    desc: "The cheer backpack athletes ask for by name, from Nfinity. Choose Classic Pink or glittering Black Sparkle, both with the embroidered white Nfinity logo. Power Nation is an official Nfinity distributor.",
+    details: ["Official Nfinity product", "Embroidered Nfinity logo", "Large main compartment + front zip pocket", "Mesh side pockets and side clip straps", "Padded top carry handle"] },
   { id: "comp-backpack", name: "Competition Backpack", sub: "Shoe pocket + bow clip", cat: "bags", price: 45, tags: ["best"], colours: ["black", "pink", "navy", "purple"], sizes: ONE,
     desc: "Separate vented shoe compartment, padded laptop sleeve and an external bow clip. Add a name for free.",
     details: ["Vented shoe compartment", "External bow clip", "Free name embroidery", "Water-resistant base"] },
