@@ -54,7 +54,7 @@
   }
   // decorative=true when the surrounding link already names the brand
   const badge = (cls = "", decorative = true) => window.PN_LOGO_SPRITE
-    ? `<svg class="logo__badge ${cls}" viewBox="${window.PN_LOGO_VIEWBOX}" ${decorative ? 'aria-hidden="true" focusable="false"' : 'role="img" aria-label="Power Nation"'}><use href="#pn-badge"/></svg>`
+    ? `<svg class="logo__badge ${cls}" ${decorative ? 'aria-hidden="true" focusable="false"' : 'role="img" aria-label="Power Nation"'}><use href="#pn-badge" width="100%" height="100%"/></svg>`
     : `<span class="logo__word">Power<b>Nation</b></span>`;
   window.PN_badge = badge;
 
@@ -64,18 +64,32 @@
     ["Shop", "shop.html", "shop"],
     ["Bows", "shop.html#cat-bows", ""],
     ["Practice Wear", "shop.html#cat-practice", ""],
-    ["Floors", "about.html#floors", ""],
+    ["Floors", "floors.html", "floors"],
     ["About", "about.html", "about"]
   ];
 
+  // Marquee: two identical sets side by side; the track slides exactly one set width, so the loop is seamless
+  const ANNOUNCE = ["No minimum orders", "Free design and sample before you pay", "Uniforms in as little as 5 weeks", "Official Nfinity stockist"];
+  const announceSet = (hidden) => `<div class="announce__set"${hidden ? ' aria-hidden="true"' : ""}>${[0, 1, 2].map(() => ANNOUNCE.map((t) => `<span>${t}</span>`).join("")).join("")}</div>`;
+
+  /* ---------- active nav link: matches page and shop filter (#cat-…) ---------- */
+  function markActiveNav() {
+    const file = (location.pathname.split("/").pop() || "index.html").replace(/^$/, "index.html");
+    const hash = location.hash;
+    const links = $$(".nav-desktop a, .menu-list a");
+    const same = (a) => { const u = new URL(a.getAttribute("href"), location.href); return (u.pathname.split("/").pop() || "index.html") === file; };
+    let match = links.filter((a) => same(a) && new URL(a.getAttribute("href"), location.href).hash === hash && hash);
+    if (!match.length) match = links.filter((a) => same(a) && !new URL(a.getAttribute("href"), location.href).hash);
+    if (!match.length && page === "shop") match = links.filter((a) => /^shop\.html$/.test(a.getAttribute("href")));
+    links.forEach((a) => a.removeAttribute("aria-current"));
+    match.forEach((a) => a.setAttribute("aria-current", "page"));
+  }
+
   function headerHTML() {
-    const nav = NAV.map(([t, h, p]) => `<a href="${h}"${p && p === page ? ' aria-current="page"' : ""}>${t}</a>`).join("");
+    const nav = NAV.map(([t, h]) => `<a href="${h}">${t}</a>`).join("");
     return `
     <a class="skip" href="#main">Skip to content</a>
-    <div class="announce" role="region" aria-label="Offers"><div class="announce__track">
-      <span>No minimum orders</span><span>Free design and sample before you pay</span><span>Uniforms in as little as 5 weeks</span>
-      <span aria-hidden="true">No minimum orders</span><span aria-hidden="true">Free design and sample before you pay</span><span aria-hidden="true">Uniforms in as little as 5 weeks</span>
-    </div></div>
+    <div class="announce" role="region" aria-label="Offers"><div class="announce__track">${announceSet(false)}${announceSet(true)}</div></div>
     <header class="header">
       <div class="wrap header__inner">
         <div class="header__left">
@@ -89,7 +103,7 @@
         </div>
         <div class="header__right">
           <a class="icon-btn" href="shop.html#search" aria-label="Search the shop">${I.search}</a>
-          <a class="icon-btn" href="about.html#contact" aria-label="Account and contact">${I.user}</a>
+          <a class="icon-btn" href="contact.html" aria-label="Account and contact">${I.user}</a>
           <button class="icon-btn" type="button" aria-label="Open bag" data-open="bag">${I.bag}<span class="bag-count" data-bag-count hidden>0</span></button>
         </div>
       </div>
@@ -106,7 +120,9 @@
           <li><a href="shop.html#cat-warmups">Hoodies &amp; Warm-ups</a></li>
           <li><a href="shop.html#cat-bags">Backpacks</a></li>
           <li><a href="shop.html#cat-shoes">Cheer Shoes</a></li>
-          <li><a href="about.html#floors">Floors &amp; Hire</a></li>
+          <li><a href="floors.html">Floors &amp; Hire</a></li>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="contact.html">Contact</a></li>
           <li><a href="about.html">About</a></li>
         </ul>
         <div class="menu-contact">
@@ -115,7 +131,7 @@
           <span>${SITE.email}</span>
         </div>
       </div>
-      <div class="drawer__foot"><a class="btn btn--pink" href="uniforms.html#quote">Get my free design</a></div>
+      <div class="drawer__foot"><a class="btn btn--pink" href="design.html">Get my free design</a></div>
     </aside>
     <aside class="drawer drawer--right" id="drawer-bag" aria-label="Your bag" aria-hidden="true">
       <div class="drawer__head"><h2>Your bag</h2><button class="icon-btn" type="button" aria-label="Close bag" data-close>${I.close}</button></div>
@@ -151,10 +167,10 @@
         </div>
         <div class="footer__cols">
           <details open><summary>Help</summary><ul>
-            <li><a href="uniforms.html#faq">Uniform FAQs</a></li>
-            <li><a href="uniforms.html#sizing">Size guide</a></li>
-            <li><a href="about.html#contact">Delivery &amp; returns</a></li>
-            <li><a href="about.html#contact">Contact us</a></li>
+            <li><a href="faq.html">Uniform FAQs</a></li>
+            <li><a href="size-guide.html">Size guide</a></li>
+            <li><a href="delivery.html">Delivery &amp; returns</a></li>
+            <li><a href="contact.html">Contact us</a></li>
           </ul></details>
           <details open><summary>Shop</summary><ul>
             <li><a href="uniforms.html">Bespoke uniforms</a></li>
@@ -164,8 +180,9 @@
           </ul></details>
           <details open><summary>More</summary><ul>
             <li><a href="about.html">About Power Nation</a></li>
-            <li><a href="about.html#floors">Sprung floors &amp; hire</a></li>
-            <li><a href="uniforms.html#quote">Order forms</a></li>
+            <li><a href="floors.html">Sprung floors &amp; hire</a></li>
+            <li><a href="design.html">Free uniform design</a></li>
+            <li><a href="contact.html">Contact us</a></li>
           </ul></details>
           <details open><summary>Address</summary><ul>
             ${SITE.address.map((l) => `<li>${l}</li>`).join("")}
@@ -181,11 +198,13 @@
         <div class="footer__mega" aria-hidden="true">Power Nation</div>
       </div>
     </footer>
-    ${page !== "uniforms" ? `<a class="fab-quote" href="uniforms.html#quote">${I.pencil}<span>Free design</span></a>` : ""}`;
+    ${!["uniforms", "design"].includes(page) ? `<a class="fab-quote" href="design.html">${I.pencil}<span>Free design</span></a>` : ""}`;
   }
 
   const h = $("[data-include=header]");
   if (h) h.outerHTML = headerHTML();
+  markActiveNav();
+  window.addEventListener("hashchange", markActiveNav);
   const f = $("[data-include=footer]");
   if (f) f.outerHTML = footerHTML();
   // Footer link columns: always open on desktop, collapsible on phones
@@ -332,7 +351,7 @@
     </div>`;
     if (!bag.length) {
       body.innerHTML = `${meter}<div class="bag-empty"><p>Your bag is empty.</p><a class="btn btn--glass" href="shop.html">Shop the store</a></div>`;
-      foot.innerHTML = `<a class="btn btn--line btn--block" href="uniforms.html#quote">Team uniforms? Get a free design</a>`;
+      foot.innerHTML = `<a class="btn btn--line btn--block" href="design.html">Team uniforms? Get a free design</a>`;
       return;
     }
     body.innerHTML = meter + `<ul class="bag-items">${bag.map((b, i) => {
@@ -347,7 +366,7 @@
         <div class="bag-item__price">${money(b.qty * b.price)}</div>
       </li>`;
     }).join("")}</ul>
-    <div class="bag-upsell"><span class="label label--pink">Ordering for a whole team?</span><p>Order 10 or more and get team prices, plus names added for free.</p><a class="link-u" href="uniforms.html#quote">Get team pricing</a></div>`;
+    <div class="bag-upsell"><span class="label label--pink">Ordering for a whole team?</span><p>Order 10 or more and get team prices, plus names added for free.</p><a class="link-u" href="design.html">Get team pricing</a></div>`;
     foot.innerHTML = `<div class="bag-total"><span>Subtotal</span><span>${money(total)}</span></div>
       <button class="btn btn--pink btn--block" type="button" data-checkout>Checkout</button>
       <span class="form__note">Taxes included. Delivery calculated at checkout.</span>`;
@@ -371,7 +390,7 @@
           <div><div class="card__name">${p.name}</div><div class="card__sub">${p.sub}</div><div class="card__price" style="margin-top:6px">${money(p.price)}</div></div>
         </div>
         <div><div class="opt-label">Colour <b>${cname(p, colour)}</b></div><div class="colour-opts">${p.colours.map((c) => `<button type="button" style="--c:${C[c].hex}" aria-label="${cname(p, c)}" aria-pressed="${c === colour}" data-qc="${c}"></button>`).join("")}</div></div>
-        <div><div class="opt-label">Size <a href="uniforms.html#sizing" style="color:inherit">Size guide</a></div><div class="size-opts">${p.sizes.map((s) => `<button type="button" aria-pressed="${s === size}" data-qs="${s}">${s}</button>`).join("")}</div></div>
+        <div><div class="opt-label">Size <a href="size-guide.html" style="color:inherit">Size guide</a></div><div class="size-opts">${p.sizes.map((s) => `<button type="button" aria-pressed="${s === size}" data-qs="${s}">${s}</button>`).join("")}</div></div>
       </div>`;
       foot.innerHTML = `<button class="btn btn--pink btn--block" type="button" data-qadd ${size ? "" : "disabled style=\"opacity:.5\""}>${size ? "Add to bag · " + money(p.price) : "Select a size"}</button>
         <a class="link-u" style="justify-self:center" href="product.html#${p.id}">View full details</a>`;
@@ -475,14 +494,15 @@
     const days = Math.round((deadline - today) / 86400000);
     const fmt = (d) => d.toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "long", year: "numeric" });
     if (days > 0) {
-      out.innerHTML = `<b>Get in touch by ${fmt(deadline)}</b><span>That's ${days} day${days === 1 ? "" : "s"} from today. The sooner the better.</span><a class="link-u" href="uniforms.html#quote">Get my free design</a>`;
+      out.innerHTML = `<b>Get in touch by ${fmt(deadline)}</b><span>That's ${days} day${days === 1 ? "" : "s"} from today. The sooner the better.</span><a class="link-u" href="design.html">Get my free design</a>`;
       out.dataset.state = days < 14 ? "soon" : "ok";
     } else {
-      out.innerHTML = `<b>That's tight, but call us</b><span>We usually need ${DESIGN_WEEKS + PRODUCTION_WEEKS} weeks, but printed uniforms can sometimes be done faster. Call us today on ${SITE.phone}.</span><a class="link-u" href="uniforms.html#quote">Send my brief now</a>`;
+      out.innerHTML = `<b>That's tight, but call us</b><span>We usually need ${DESIGN_WEEKS + PRODUCTION_WEEKS} weeks, but printed uniforms can sometimes be done faster. Call us today on ${SITE.phone}.</span><a class="link-u" href="design.html">Send my brief now</a>`;
       out.dataset.state = "late";
     }
     const q = document.getElementById("q-date");
     if (q) q.value = val;
+    try { localStorage.setItem("pn-comp-date", val); } catch (err) { /* storage blocked */ }
   });
 
   /* ---------- home rails rendered from data ---------- */
@@ -498,7 +518,7 @@
   });
 
   /* ---------- sticky mobile action bars ---------- */
-  // <div class="mbar" data-mbar data-show-after=".hero" data-hide-on="#quote">
+  // <div class="mbar" data-mbar data-show-after=".hero" data-hide-on=".footer">
   function initMbar(bar) {
     if (!bar || bar.dataset.ready || !("IntersectionObserver" in window)) return;
     bar.dataset.ready = "1";

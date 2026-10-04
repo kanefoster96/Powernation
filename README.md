@@ -9,10 +9,13 @@ Plain HTML, CSS and JavaScript. There's no build step, so open `index.html` or h
 | Page | Purpose |
 |---|---|
 | `index.html` | Home: uniform pitch, new arrivals, shop by category and colour, comp-date calculator, coach proof, Club Shop, floors |
-| `uniforms.html` | Bespoke uniforms: Hit Zero package, guarantees, tiers, process, upgrades, complete-the-kit, size guide, FAQs, free design form |
+| `uniforms.html` | Bespoke uniforms: Hit Zero package, guarantees, tiers, process, upgrades, complete-the-kit, gallery |
 | `shop.html` | Store with category, colour, search and sort. Deep links: `#cat-bows`, `#colour-pink`, `#new`, `#best` |
 | `product.html#<id>` | Product page: colour, size, name personalisation, team upsell |
-| `about.html` | Story, floors and hire, contact form |
+| `about.html` | Story, with links to floors, contact and free design |
+| `design.html` | Free design request form (`#elite`, `#hybrid`, `#sublimated`, `#club-shop`, `#practice-wear` pre-select options) |
+| `faq.html`, `size-guide.html`, `delivery.html` | Help pages |
+| `floors.html`, `contact.html` | Floors and hire; contact form and details |
 
 ## Editing
 

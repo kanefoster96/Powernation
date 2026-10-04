@@ -52,10 +52,10 @@
     const cards = list.map((p) => window.PN_cardHTML(p, colourKey));
     const promo = `<div class="bespoke-inline">
       <div class="media media--photo"><img src="images/uniforms/bespoke-team.jpg" alt="Four athletes in bespoke Starlets cheer uniforms" loading="lazy"></div>
-      <div class="bespoke-inline__copy"><span class="label" style="color:var(--ink)">Bespoke uniforms</span><h3>Want the whole team to match?</h3><p>Free design, free sample, no minimum order. Uniforms, bows and practice wear all made in your colours.</p><a class="btn" href="uniforms.html#quote">Get my free design</a></div>
+      <div class="bespoke-inline__copy"><span class="label" style="color:var(--ink)">Bespoke uniforms</span><h3>Want the whole team to match?</h3><p>Free design, free sample, no minimum order. Uniforms, bows and practice wear all made in your colours.</p><a class="btn" href="design.html">Get my free design</a></div>
     </div>`;
     if (cards.length > 6) cards.splice(6, 0, promo); else cards.push(promo);
-    $("shop-grid").innerHTML = list.length ? cards.join("") : `<div class="grid-empty"><h3>No matches</h3><p class="lede">Try another colour, or we can make it custom in your team colours.</p><div class="btn-row" style="justify-content:center"><button class="btn btn--glass" type="button" data-clear="all">Clear filters</button><a class="btn btn--line" href="uniforms.html#quote">Ask for custom</a></div></div>`;
+    $("shop-grid").innerHTML = list.length ? cards.join("") : `<div class="grid-empty"><h3>No matches</h3><p class="lede">Try another colour, or we can make it custom in your team colours.</p><div class="btn-row" style="justify-content:center"><button class="btn btn--glass" type="button" data-clear="all">Clear filters</button><a class="btn btn--line" href="design.html">Ask for custom</a></div></div>`;
     window.PN_hydrateMedia($("shop-grid"));
     renderFilters();
   }
