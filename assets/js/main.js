@@ -161,8 +161,8 @@
         </div>
         <div class="socials">${soc}</div>
         <div class="footer__base">
-          <span>© ${new Date().getFullYear()} Power Nation Cheer Ltd. All rights reserved.</span>
-          <span>Bespoke cheer uniforms, made for UK teams.</span>
+          <span>© ${new Date().getFullYear()} Power Nation Cheer Limited. All rights reserved.</span>
+          <span>Company no. 12069903 · Registered office: Celixir House, Stratford Business and Technology Park, Banbury Road, Stratford-upon-Avon CV37 7GZ</span>
         </div>
         <div class="footer__mega" aria-hidden="true">Power Nation</div>
       </div>

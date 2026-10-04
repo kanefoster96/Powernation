@@ -28,3 +28,12 @@ Plain HTML, CSS and JavaScript. There's no build step, so open `index.html` or h
 - Confirm the proposed policies: Sample-Match Promise, Comp-Date Lock, Fit-Right Guarantee, deposit/balance payments, Club Shop credit, £50 referral credit, "2027 comp season" booking pill.
 - Connect the forms (free design, contact, newsletter) to a form service or CRM, and the bag checkout to your store platform (e.g. Shopify).
 - Add real coach quotes and club logos.
+
+## Brand & SEO
+
+- **Logo:** `images/brand/pn-badge.svg` (traced vector badge). Favicons: `favicon.ico`, `images/brand/favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` (dark backdrop), plus `site.webmanifest`.
+- **Share card:** `images/brand/og-image.jpg` (1200×630) used for WhatsApp, iMessage, Facebook, LinkedIn and X previews.
+- **Every page** has a unique title and description, canonical URL, Open Graph and Twitter tags. Home has business structured data (address, phone, socials); Bespoke Uniforms has FAQ structured data.
+- **`robots.txt` + `sitemap.xml`** list the public pages. The product page is `noindex` until products get their own URLs.
+- **Preview domain is hidden from Google:** `vercel.json` sends `noindex` on any `*.vercel.app` address, so the preview (with placeholder prices) never competes with the live powernationcheer.com. It's indexed normally once the real domain points here.
+- **When the real domain goes live:** replace `https://powernation-zeta.vercel.app` with the real domain in the page heads, `robots.txt` and `sitemap.xml` (one find-and-replace), then submit the sitemap in Google Search Console.
