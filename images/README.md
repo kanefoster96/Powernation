@@ -1,6 +1,6 @@
 # Image guide
 
-**Done:** `images/uniforms/bespoke-team.jpg` (Starlets team shot) is the home and Bespoke Uniforms hero, and is used in the home bespoke section (`bespoke-team-detail.jpg` crop) and the shop's bespoke promo. A 720px version (`bespoke-team-720.jpg`) loads on phones.
+**Done:** `images/uniforms/bespoke-team.jpg` (Starlets team shot) is the home and Bespoke Uniforms hero and the shop's bespoke promo. A 720px version (`bespoke-team-720.jpg`) loads on phones.
 
 **Done:** Black Nfinity shoe (`products/nfinity-vengeance-black.jpg`, also the home Cheer Shoes tile `categories/shoes.jpg`).
 

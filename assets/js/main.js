@@ -314,7 +314,7 @@
     </div>`;
     if (!bag.length) {
       body.innerHTML = `${meter}<div class="bag-empty"><p>Your bag is empty.</p><a class="btn btn--glass" href="shop.html">Shop the store</a></div>`;
-      foot.innerHTML = `<a class="btn btn--line btn--block" href="uniforms.html#quote">Need full team uniforms? Get a free design</a>`;
+      foot.innerHTML = `<a class="btn btn--line btn--block" href="uniforms.html#quote">Team uniforms? Get a free design</a>`;
       return;
     }
     body.innerHTML = meter + `<ul class="bag-items">${bag.map((b, i) => {
