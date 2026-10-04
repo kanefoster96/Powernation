@@ -1,23 +1,16 @@
 # Image guide
 
+**Done:** `images/uniforms/bespoke-team.jpg` (Starlets team shot) is the home and Bespoke Uniforms hero, and is used in the home bespoke section (`bespoke-team-detail.jpg` crop) and the shop's bespoke promo. A 720px version (`bespoke-team-720.jpg`) loads on phones.
+
 Drop files into this `images/` folder using the exact paths below. Until a file exists, the site shows a labelled placeholder in its place, so you can see exactly where each image goes.
 
 - Use **.jpg** for photos (export at the size shown, around 80% quality) and **.png** for logos.
 - Keep faces and key action in the top two-thirds of hero and banner images; text sits over the bottom third.
-- The home hero can also take a short looping video at `images/hero/home.mp4` (muted, under 10 seconds, under 8MB).
-
-## Heroes
-
-| File | Page | What to shoot | Size |
-|---|---|---|---|
-| `images/hero/home.jpg` | index.html | Hero: full squad in your bespoke uniforms on a competition mat, mid-stunt (pyramid or basket), dark arena with stage lights behind. Optional looping video at images/hero/home.mp4 | 2400×1600 landscape · keep the bottom third darker for text |
 
 ## Bespoke uniforms
 
 | File | Page | What to shoot | Size |
 |---|---|---|---|
-| `images/uniforms/feature-detail.jpg` | index.html | Close-up of a finished uniform: rhinestone crest catching the light on a metallic shell top. Shot on a dark background | 1600×2000 portrait |
-| `images/uniforms/hero.jpg` | uniforms.html | Uniform hero: 3–5 athletes in a new bespoke uniform, posed in a V on a dark set with coloured rim lighting. Fashion-campaign feel, like a sportswear launch | 2400×1400 landscape · darker bottom third |
 | `images/uniforms/tier-elite.jpg` | uniforms.html | Elite uniform: heavy rhinestone coverage, metallics, cut-outs. Your most show-stopping piece | 1600×1000 |
 | `images/uniforms/tier-hybrid.jpg` | uniforms.html | Mid-tier uniform: sublimated base with metallic panels and mesh sleeves | 1600×1000 |
 | `images/uniforms/tier-sublimated.jpg` | uniforms.html | Sublimated uniform on a mannequin or athlete: bold printed graphics, no stones | 1600×1000 |
@@ -38,7 +31,6 @@ Drop files into this `images/` folder using the exact paths below. Until a file 
 | `images/uniforms/gallery-4.jpg` | uniforms.html | Artwork mock-up next to the finished uniform | 1000×1000 |
 | `images/uniforms/gallery-5.jpg` | uniforms.html | Uniform in action: jump or stunt | 1000×1000 |
 | `images/uniforms/roster-refill.jpg` | uniforms.html | New athlete receiving her uniform, matching the rest of the squad behind her | 1600×900 |
-| `images/uniforms/shop-promo.jpg` | shop.html | Team in full bespoke uniform, tight crop, works on a pink background | 1200×900 |
 
 ## Shop categories
 
