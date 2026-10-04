@@ -2,6 +2,8 @@
 
 **Done:** `images/uniforms/bespoke-team.jpg` (Starlets team shot) is the home and Bespoke Uniforms hero, and is used in the home bespoke section (`bespoke-team-detail.jpg` crop) and the shop's bespoke promo. A 720px version (`bespoke-team-720.jpg`) loads on phones.
 
+**Done:** Black Nfinity shoe (`products/nfinity-vengeance-black.jpg`, also the home Cheer Shoes tile `categories/shoes.jpg`).
+
 **Done:** Nfinity Backpack in Classic Pink (`products/nfinity-backpack-pink.jpg`) and Black Sparkle (`products/nfinity-backpack-black.jpg`).
 
 Drop files into this `images/` folder using the exact paths below. Until a file exists, the site shows a labelled placeholder in its place, so you can see exactly where each image goes.
@@ -42,7 +44,6 @@ Drop files into this `images/` folder using the exact paths below. Until a file 
 | `images/categories/practice.jpg` | index.html | Athlete in crop + shorts mid-jump or tumbling on a sprung floor | 1200×1500 |
 | `images/categories/warmups.jpg` | index.html | Team in matching hoodies and warm-up jackets, walking into a venue | 1200×1500 |
 | `images/categories/bags.jpg` | index.html | Personalised backpack with bow clipped on, flat-lay or on a bench | 1200×1500 |
-| `images/categories/shoes.jpg` | index.html | Nfinity cheer shoes on the mat, low angle, or a flyer's feet in a stunt | 1200×1500 |
 | `images/categories/accessories.jpg` | index.html | Poms, bow holder, bottle and socks styled together on a dark surface | 1200×1500 |
 
 ## Teams, coaches and about
