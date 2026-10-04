@@ -1003,3 +1003,24 @@ input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: poin
 .show-slots .media__soon { display: none; }
 .show-slots .media__ph b, .show-slots .media__ph span, .show-slots .media__ph i { display: block; }
 @media (max-width: 759px) { .media__soon { font-size: 0.58rem; letter-spacing: 0.1em; padding: 6px 10px; white-space: nowrap; } }
+
+/* ---------- PN badge logo ---------- */
+.logo__badge { display: block; width: auto; height: 46px; aspect-ratio: 1147 / 1146; overflow: visible; filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45)); transition: transform 0.25s ease; }
+.logo:hover .logo__badge { transform: rotate(-4deg) scale(1.05); }
+.logo__badge--menu { height: 44px; }
+.logo__badge--lg { height: 92px; margin-bottom: 20px; }
+.footer__brand { display: grid; justify-items: start; }
+@media (max-width: 759px) {
+  .header .logo__badge { height: 40px; }
+  .logo__badge--lg { height: 76px; }
+}
+@media (prefers-reduced-motion: reduce) { .logo:hover .logo__badge { transform: none; } }
+.logo__badge { width: 50px; height: 50px; }
+.logo__badge--menu { width: 46px; height: 46px; }
+.logo__badge--lg { width: 96px; height: 96px; }
+@media (max-width: 759px) {
+  .header .logo__badge { width: 44px; height: 44px; }
+  .logo__badge--lg { width: 80px; height: 80px; }
+}
+.header .logo { padding-block: 0; }
+.header__center, .header .logo { display: flex; align-items: center; height: 100%; }

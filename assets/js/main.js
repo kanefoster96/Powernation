@@ -47,6 +47,17 @@
   };
   window.PN_ICONS = I;
 
+  /* ---------- logo ---------- */
+  if (window.PN_LOGO_SPRITE && !document.getElementById("pn-badge")) {
+    document.body.insertAdjacentHTML("afterbegin", window.PN_LOGO_SPRITE);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) $$(".pn-shine-anim").forEach((a) => a.remove());
+  }
+  // decorative=true when the surrounding link already names the brand
+  const badge = (cls = "", decorative = true) => window.PN_LOGO_SPRITE
+    ? `<svg class="logo__badge ${cls}" viewBox="${window.PN_LOGO_VIEWBOX}" ${decorative ? 'aria-hidden="true" focusable="false"' : 'role="img" aria-label="Power Nation"'}><use href="#pn-badge"/></svg>`
+    : `<span class="logo__word">Power<b>Nation</b></span>`;
+  window.PN_badge = badge;
+
   /* ---------- header ---------- */
   const NAV = [
     ["Bespoke Uniforms", "uniforms.html", "uniforms"],
@@ -73,7 +84,7 @@
         </div>
         <div class="header__center">
           <a class="logo" href="index.html" aria-label="Power Nation home">
-            <span class="logo__word">Power<b>Nation</b></span>
+            ${badge()}
           </a>
         </div>
         <div class="header__right">
@@ -85,7 +96,7 @@
     </header>
     <div class="scrim" data-scrim></div>
     <aside class="drawer drawer--left" id="drawer-menu" aria-label="Menu" aria-hidden="true">
-      <div class="drawer__head"><span class="logo__word">Power<b>Nation</b></span><button class="icon-btn" type="button" aria-label="Close menu" data-close>${I.close}</button></div>
+      <div class="drawer__head"><a class="logo" href="index.html" aria-label="Power Nation home">${badge("logo__badge--menu")}</a><button class="icon-btn" type="button" aria-label="Close menu" data-close>${I.close}</button></div>
       <div class="drawer__body">
         <ul class="menu-list">
           <li><a href="uniforms.html">Bespoke Uniforms <span>Free design</span></a></li>
@@ -126,7 +137,10 @@
     <footer class="footer">
       <div class="wrap">
         <div class="footer__cta">
-          <h2>Your colours.<br><span class="ab-text">Your stage.</span></h2>
+          <div class="footer__brand">
+            ${badge("logo__badge--lg", false)}
+            <h2>Your colours.<br><span class="ab-text">Your stage.</span></h2>
+          </div>
           <form class="newsletter" data-newsletter>
             <label class="label" for="nl-email">Get new bows and offers by email</label>
             <div class="newsletter__row">
@@ -136,24 +150,24 @@
           </form>
         </div>
         <div class="footer__cols">
-          <details><summary>Help</summary><ul>
+          <details open><summary>Help</summary><ul>
             <li><a href="uniforms.html#faq">Uniform FAQs</a></li>
             <li><a href="uniforms.html#sizing">Size guide</a></li>
             <li><a href="about.html#contact">Delivery &amp; returns</a></li>
             <li><a href="about.html#contact">Contact us</a></li>
           </ul></details>
-          <details><summary>Shop</summary><ul>
+          <details open><summary>Shop</summary><ul>
             <li><a href="uniforms.html">Bespoke uniforms</a></li>
             <li><a href="shop.html#cat-bows">Bows</a></li>
             <li><a href="shop.html#cat-practice">Practice wear</a></li>
             <li><a href="shop.html#cat-shoes">Nfinity shoes</a></li>
           </ul></details>
-          <details><summary>More</summary><ul>
+          <details open><summary>More</summary><ul>
             <li><a href="about.html">About Power Nation</a></li>
             <li><a href="about.html#floors">Sprung floors &amp; hire</a></li>
             <li><a href="uniforms.html#quote">Order forms</a></li>
           </ul></details>
-          <details><summary>Address</summary><ul>
+          <details open><summary>Address</summary><ul>
             ${SITE.address.map((l) => `<li>${l}</li>`).join("")}
             <li>${SITE.phone}</li>
             <li>${SITE.email}</li>
@@ -174,6 +188,8 @@
   if (h) h.outerHTML = headerHTML();
   const f = $("[data-include=footer]");
   if (f) f.outerHTML = footerHTML();
+  // Footer link columns: always open on desktop, collapsible on phones
+  if (matchMedia("(max-width: 899px)").matches) $$(".footer__cols details").forEach((d) => d.removeAttribute("open"));
 
   /* ---------- image slots ---------- */
   if (/[?&]slots\b/.test(location.search)) document.documentElement.classList.add("show-slots");
