@@ -51,7 +51,7 @@
     const colourKey = state.colours.size ? [...state.colours][0] : null;
     const cards = list.map((p) => window.PN_cardHTML(p, colourKey));
     const promo = `<div class="bespoke-inline">
-      <div class="media" style="--tint:#0b0a0e" data-note="Team in full bespoke uniform, tight crop, works on a pink background" data-size="1200×900"><img src="images/uniforms/shop-promo.jpg" alt="Team in bespoke Power Nation uniforms" loading="lazy"></div>
+      <div class="media media--photo"><img src="images/uniforms/bespoke-team.jpg" alt="Four athletes in bespoke Starlets cheer uniforms" loading="lazy"></div>
       <div class="bespoke-inline__copy"><span class="label" style="color:var(--ink)">Bespoke uniforms</span><h3>Want the whole team to match?</h3><p>Free design, free sample, no minimum order. Uniforms, bows and practice wear all made in your colours.</p><a class="btn" href="uniforms.html#quote">Get my free design</a></div>
     </div>`;
     if (cards.length > 6) cards.splice(6, 0, promo); else cards.push(promo);
