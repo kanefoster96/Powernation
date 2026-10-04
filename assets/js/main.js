@@ -93,7 +93,6 @@
     <header class="header">
       <div class="wrap header__inner">
         <div class="header__left">
-          <button class="icon-btn menu-btn" type="button" aria-label="Open menu" data-open="menu">${I.menu}</button>
           <nav class="nav-desktop" aria-label="Main">${nav}</nav>
         </div>
         <div class="header__center">
@@ -105,11 +104,12 @@
           <a class="icon-btn" href="shop.html#search" aria-label="Search the shop">${I.search}</a>
           <a class="icon-btn" href="contact.html" aria-label="Account and contact">${I.user}</a>
           <button class="icon-btn" type="button" aria-label="Open bag" data-open="bag">${I.bag}<span class="bag-count" data-bag-count hidden>0</span></button>
+          <button class="icon-btn menu-btn" type="button" aria-label="Open menu" data-open="menu">${I.menu}</button>
         </div>
       </div>
     </header>
     <div class="scrim" data-scrim></div>
-    <aside class="drawer drawer--left" id="drawer-menu" aria-label="Menu" aria-hidden="true">
+    <aside class="drawer drawer--right" id="drawer-menu" aria-label="Menu" aria-hidden="true">
       <div class="drawer__head"><a class="logo" href="index.html" aria-label="Power Nation home">${badge("logo__badge--menu")}</a><button class="icon-btn" type="button" aria-label="Close menu" data-close>${I.close}</button></div>
       <div class="drawer__body">
         <ul class="menu-list">

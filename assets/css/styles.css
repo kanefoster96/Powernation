@@ -1062,3 +1062,12 @@ input[type="date"]::-webkit-calendar-picker-indicator { opacity: 0; cursor: poin
 .link-card p { color: var(--mute); }
 .link-card .link-u { justify-self: start; margin-top: 6px; }
 @media (max-width: 759px) { .header__right a[href="contact.html"] { display: none; } }
+
+/* ---------- header: badge left, icons + menu right ---------- */
+.header__inner { grid-template-columns: auto 1fr auto; }
+.header__center { order: -1; justify-content: flex-start; }
+.header__left { min-width: 0; }
+.header__right { gap: 2px; }
+@media (min-width: 1080px) { .header__right .menu-btn { display: none; } }
+.logo:hover .logo__badge, .logo__badge { transform: none; }
+.logo:hover .logo__badge { filter: drop-shadow(0 2px 8px rgba(255, 61, 142, 0.35)); }
