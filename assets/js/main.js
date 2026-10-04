@@ -54,7 +54,7 @@
   }
   // decorative=true when the surrounding link already names the brand
   const badge = (cls = "", decorative = true) => window.PN_LOGO_SPRITE
-    ? `<svg class="logo__badge ${cls}" ${decorative ? 'aria-hidden="true" focusable="false"' : 'role="img" aria-label="Power Nation"'}><use href="#pn-badge" width="100%" height="100%"/></svg>`
+    ? `<svg class="logo__badge ${cls}" viewBox="${window.PN_LOGO_VIEWBOX}" preserveAspectRatio="xMidYMid meet" ${decorative ? 'aria-hidden="true" focusable="false"' : 'role="img" aria-label="Power Nation"'}><use href="#pn-badge" xlink:href="#pn-badge"/></svg>`
     : `<span class="logo__word">Power<b>Nation</b></span>`;
   window.PN_badge = badge;
 
