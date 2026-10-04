@@ -31,7 +31,7 @@ Plain HTML, CSS and JavaScript. There's no build step, so open `index.html` or h
 
 ## Brand & SEO
 
-- **Logo:** `images/brand/pn-badge.svg` (traced vector badge). Favicons: `favicon.ico`, `images/brand/favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png` (dark backdrop), plus `site.webmanifest`.
+- **Logo:** `images/brand/pn-badge.svg` (traced vector badge). Favicons: `favicon.ico`, `images/brand/favicon.svg`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`, maskable Android icons (dark backdrop, padded so the badge never touches the edges), plus `site.webmanifest`.
 - **Share card:** `images/brand/og-image.jpg` (1200×630) used for WhatsApp, iMessage, Facebook, LinkedIn and X previews.
 - **Every page** has a unique title and description, canonical URL, Open Graph and Twitter tags. Home has business structured data (address, phone, socials); Bespoke Uniforms has FAQ structured data.
 - **`robots.txt` + `sitemap.xml`** list the public pages. The product page is `noindex` until products get their own URLs.
