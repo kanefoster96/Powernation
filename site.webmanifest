@@ -1,0 +1,13 @@
+{
+  "name": "Power Nation Cheer",
+  "short_name": "Power Nation",
+  "description": "Bespoke cheer uniforms, bows, practice wear and Nfinity shoes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0a0e",
+  "theme_color": "#0b0a0e",
+  "icons": [
+    { "src": "/images/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/images/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

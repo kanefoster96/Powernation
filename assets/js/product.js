@@ -13,6 +13,8 @@
     let qty = 1;
     let personal = false;
     document.title = p.name + " | Power Nation";
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute("content", p.desc);
 
     document.getElementById("pdp-crumbs").innerHTML = `<a href="shop.html">Shop</a> / <a href="shop.html#cat-${p.cat}">${CATS[p.cat].name}</a> / <span>${p.name}</span>`;
     const root = document.getElementById("pdp");
