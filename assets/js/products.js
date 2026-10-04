@@ -49,10 +49,10 @@ window.PN_PRODUCTS = [
     desc: "A smaller 2-inch bow sized for tiny and mini athletes, on a soft no-snag elastic.",
     details: ["2\" ribbon", "Soft no-snag elastic", "Sized for ages 3–8"] },
 
-  { id: "power-crop", name: "Power Crop Top", sub: "Seamless practice crop", cat: "practice", price: 24, tags: ["new", "best"], colours: ["black", "pink", "white", "purple", "royal", "teal"], sizes: YOUTH_ADULT,
+  { id: "power-crop", name: "Power Crop Top", sub: "Seamless practice crop", cat: "practice", price: 24, tags: ["new", "best"], colours: ["pink", "black", "white", "purple", "royal", "teal"], sizes: YOUTH_ADULT,
     desc: "A locked-in, seamless crop that stays put through tumbling passes. Double-layer front, sweat-wicking fabric.",
     details: ["Seamless knit", "Double-layer front", "Sweat-wicking", "Add rhinestone or vinyl team name"] },
-  { id: "practice-shorts", name: "Practice Shorts", sub: "Stretch high-waist short", cat: "practice", price: 20, tags: ["best"], colours: ["black", "navy", "pink", "white", "purple"], sizes: YOUTH_ADULT,
+  { id: "practice-shorts", name: "Practice Shorts", sub: "Stretch high-waist short", cat: "practice", price: 20, tags: ["best"], colours: ["silver", "black", "navy", "pink", "white", "purple"], sizes: YOUTH_ADULT,
     desc: "High-waist four-way-stretch shorts with a wide waistband that doesn't roll during stunts.",
     details: ["Four-way stretch", "Wide no-roll waistband", "Squat-proof fabric"] },
   { id: "rhinestone-tee", name: "Rhinestone Practice Tee", sub: "Your team name in stones", cat: "practice", price: 30, tags: ["team"], colours: ["black", "white", "pink"], sizes: YOUTH_ADULT,
@@ -64,7 +64,7 @@ window.PN_PRODUCTS = [
   { id: "flyer-leggings", name: "Flyer Leggings", sub: "Full-length seamless legging", cat: "practice", price: 32, tags: [], colours: ["black", "purple", "navy", "pink"], sizes: YOUTH_ADULT,
     desc: "Seamless, high-rise leggings with grip-friendly fabric for stunting.",
     details: ["Seamless high-rise", "Grip-friendly finish", "Squat-proof"] },
-  { id: "racer-tank", name: "Racerback Practice Tank", sub: "Lightweight training tank", cat: "practice", price: 20, tags: [], colours: ["white", "black", "pink", "royal", "red"], sizes: YOUTH_ADULT,
+  { id: "racer-tank", name: "Racerback Practice Tank", sub: "Lightweight training tank", cat: "practice", price: 20, tags: [], colours: ["pink", "white", "black", "royal", "red"], sizes: YOUTH_ADULT,
     desc: "Featherweight racerback tank for hot gyms and summer camps.",
     details: ["Lightweight mesh-knit", "Racerback cut", "Quick-dry"] },
 
@@ -117,3 +117,7 @@ window.PN_PRODUCTS = [
     desc: "Featherlight cheer shoe with a flexible sole, ideal for flyers.",
     details: ["Official Nfinity product", "Ultra-light build", "Flexible sole"] }
 ];
+
+/* Products with real photos are shown first in carousels and the "Featured" shop sort. Add an id here when its photo goes in. */
+window.PN_HAS_PHOTO = ["power-crop", "practice-shorts", "rhinestone-tee", "racer-tank", "nfinity-backpack", "nfinity-vengeance"];
+window.PN_PRODUCTS.sort((a, b) => window.PN_HAS_PHOTO.includes(b.id) - window.PN_HAS_PHOTO.includes(a.id));
